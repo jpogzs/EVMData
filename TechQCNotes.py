@@ -72,7 +72,7 @@ for root, dirs, files in os.walk(os.path.abspath(path)):
                             
                         else:         
                             if str(x) in techqcnotes:    
-                                print("same note")
+                                print("...")
                                 #print("n " +str(n))
                                 #print("t " +str(t))    
                             else:                                                                 
