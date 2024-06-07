@@ -1,3 +1,10 @@
+# TechQCNotes
+# Extract TechQCNotes from EVM files
+
+# Credits:
+# Idea: Lawrence Trinidad
+# Code: James Pogio
+
 import scipy.io as sio
 import pandas as pd
 import os
