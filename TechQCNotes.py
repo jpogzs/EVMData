@@ -56,16 +56,21 @@ for root, dirs, files in os.walk(os.path.abspath(path)):
                            "from TW by",
                            "Shipped by awshrcacher",
                            "History_New"]
+<<<<<<< HEAD
                 validnotes = ""
                 #streaming file line
+=======
+                #n = 0
+                #t = 0
+>>>>>>> parent of 775e7a0 (1.3.1)
                 for x in notes:
-                    line = str(x)
-
-                    #opened by
-                    if "Opened by" in line:
-                        split = line.split()
-                        noteby = split[2]
+                    history = str(x)
+                    #n += 1       
+                     
+                    #techqcnotes = techqcnotes.replace("['","")
+                    #techqcnotes = techqcnotes.replace("']","")
                 
+<<<<<<< HEAD
                     #if in exclude list
                     if any (x in line for x in exclude):
                         line = ""
@@ -116,13 +121,39 @@ for root, dirs, files in os.walk(os.path.abspath(path)):
                     #     if "Rejected in QC from TW as Needs Rework" in line:
                     #         techqcnotes =
 
+=======
+                    if any (x in history for x in exclude):
+                        history = ""
+                    elif (samecheck == history):
+                        history = ""
+                        #print("same")
+                    
+                    else:
+                        if samecheck == "":
+                            techqcnotes += str(history)
+                            #t = n
+                            #print("same t "+str(t))
+                            
+                        else:         
+                            if str(x) in techqcnotes:    
+                                print("...")
+                                #print("n " +str(n))
+                                #print("t " +str(t))    
+                            else:                                                                 
+                                techqcnotes += "\n" + str(history)
+                                #t = n
+                                #print(x)
+                        samecheck = history
+                                     
+                    #history += str(techqcnotes) + "\n"  
+                    #stringnotes = str(notes)
+>>>>>>> parent of 775e7a0 (1.3.1)
                 techqcnotes = techqcnotes.replace("[","")
                 techqcnotes = techqcnotes.replace("]","")
-                techqcnotes = techqcnotes.replace("'","")
                 print(techqcnotes)
                 fname.append(evm)
                 fnotes.append(techqcnotes)
-                line = ""
+                history = ""
                 techqcnotes = ""
 
      
