@@ -56,7 +56,7 @@ for root, dirs, files in os.walk(os.path.abspath(path)):
                            "from TW by",
                            "Shipped by awshrcacher",
                            "History_New"]
-
+                validnotes = ""
                 #streaming file line
                 for x in notes:
                     line = str(x)
@@ -69,35 +69,52 @@ for root, dirs, files in os.walk(os.path.abspath(path)):
                     #if in exclude list
                     if any (x in line for x in exclude):
                         line = ""
-
-                    #if same notes as previous
-                    elif (samecheck == line):
-                        line = ""
-                    
+                        valid = 0
                     else:
-                        #1st notes
-                        if samecheck == "":
-                            techqcnotes += noteby + ":\n" + str(line)
-                            
-                        #additional notes    
-                        else:  
-                            #if same notes    
-                            if str(x) in techqcnotes:    
-                                print("...")
+                        validnotes += "\n" + line
+                        valid = 1
+                        #print(validnotes)
 
-                            # elif noteby in techqcnotes:
-                            #     print("shit")
-                            
-                            #not same notes
-                            else:      
-                                if samenoteby == noteby:
-                                    techqcnotes += "\n" + str(line) 
-                                else:                                                  
-                                    techqcnotes += "\n" + noteby + ":\n" + str(line) + "\n"
+                    if "as Needs Rework" in str(x):
+                        techqcnotes += noteby + ":" + validnotes
+                        # print("shit")
+                    
+                #techqcnotes += techqcnotes
+                    # else:
+                    #     techqcnotes = ""
 
-                        samecheck = line
-                        samenoteby = noteby
-                                     
+
+
+
+                    # #if same notes as previous
+                    # elif (samecheck == line):
+                    #     line = ""
+                    
+                    # else:
+                    #     #1st notes
+                    #     if samecheck == "":
+                    #         techqcnotes += noteby + ":\n" + str(line)
+                            
+                    #     #additional notes    
+                    #     else:  
+                    #         #if same notes    
+                    #         if str(x) in techqcnotes:    
+                    #             print("...")
+
+                    #         # elif noteby in techqcnotes:
+                    #         #     print("shit")
+                            
+                    #         #not same notes
+                    #         else:      
+                    #             if samenoteby == noteby:
+                    #                 techqcnotes += "\n" + str(line) 
+                    #             else:                                                  
+                    #                 techqcnotes += "\n" + noteby + ":\n" + str(line) + "\n"
+
+                    #     samecheck = line
+                    #     samenoteby = noteby
+                    #     if "Rejected in QC from TW as Needs Rework" in line:
+                    #         techqcnotes =
 
                 techqcnotes = techqcnotes.replace("[","")
                 techqcnotes = techqcnotes.replace("]","")
