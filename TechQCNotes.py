@@ -99,9 +99,10 @@ for root, dirs, files in os.walk(os.path.abspath(path)):
                         samenoteby = noteby
                                      
 
+                techqcnotes = techqcnotes.replace("['","")
+                techqcnotes = techqcnotes.replace("']","")
                 techqcnotes = techqcnotes.replace("[","")
                 techqcnotes = techqcnotes.replace("]","")
-                techqcnotes = techqcnotes.replace("'","")
                 print(techqcnotes)
                 fname.append(evm)
                 fnotes.append(techqcnotes)
