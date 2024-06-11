@@ -1,4 +1,34 @@
 Filename,TechQCNotes
-JP3_511_X_Claim_[34273.28742]_[22.05.2024_06]_[20 Maudie St]_[Greenville]_[SC].evm,fix material editors wall error
-JTP3DPen_00000000_IA_[43493.471529]_[22.12.2022_15]_[2612 Nandina Ct]_[Heath]_[TX].evm,use 6 height & slanted...see SS
-P2_57861341_ECPrem_[69423.69423]_[22.03.2024_05]_[103 Lexington Drive]_[Annville]_[PA].evm,"fix hidden, not xactware."
+1H_57901862_Claim_[3564.260470]_[25.03.2024_18]_[8927 LAWNCLIFF LN]_[HOUSTON]_[TX].evm,
+3H_56717479_WallFKLT_[100800.212659705]_[27.12.2023_13]_[4921 East Calga]_[Murfreesboro]_[TN].evm,"'wall 6,8 missed soffits'
+'wall 5 cutout on under roof'
+'RC file'
+"
+JP3_511_X_Claim_[34273.28742]_[22.05.2024_06]_[20 Maudie St]_[Greenville]_[SC].evm,'fix material editors wall error'
+JPP2_902_BidPerf_[196232.485904]_[23.05.2024_11]_[59 Mary Ave]_[Fords]_[NJ].evm,'-fit frames see allviews'
+P2_57361081_ECPrem_[37595.37595]_[19.02.2024_11]_[15009 W 123rd Terrace]_[Olathe]_[KS].evm,
+P2_57861341_ECPrem_[69423.69423]_[22.03.2024_05]_[103 Lexington Drive]_[Annville]_[PA].evm,"'xactware'
+'fix hidden, not xactware.'"
+P2_58683704_X_Claim_[95913.33087]_[06.05.2024_12]_[2848 Everett Drive]_[Friendswood]_[TX].evm,
+P2_59374646_X_Claim_[34273.28742]_[05.06.2024_03]_[1104 N Cardinal Dr]_[Rogers]_[AR].evm,
+P3_57352585_X_AA3D_[92083.582205916]_[19.02.2024_07]_[14518 County Road 2132 N]_[Tatum]_[TX].evm,
+P3_57355378_X_Claim_[92083.57355]_[19.02.2024_08]_[951 COUNTY ROAD 4855]_[Leonard]_[TX].evm,
+P3_58168080_C_EC3D_[44200.584105]_[09.04.2024_08]_[11025 Voyager Par]_[Colorado Springs]_[CO].evm,
+P3_58287651_X_Claim_[7841.203211]_[15.04.2024_13]_[692 CHESTERSHIRE RD]_[COLUMBUS]_[OH].evm,
+P3_58423788_X_Claim_[34273.28742]_[22.04.2024_18]_[12401 W 70TH ST]_[SHAWNEE]_[KS].evm,"'Set all views'
+'add walls'"
+P3_58495069_X_Claim_[34273.28742]_[25.04.2024_15]_[1001 E KANSAS ST]_[PEORIA]_[IL].evm,"'WALL'
+'.too many missed stamp windor/door/maindoor'"
+P3_58594591_X_Claim_[34273.28742]_[01.05.2024_07]_[4804 Marblehead Dr]_[Austin]_[TX].evm,
+P3_58594591_X_Claim_[34273.28742]_[01.05.2024_08]_[4804 Marblehead Dr]_[Austin]_[TX].evm,"'-planar.'
+'-fit frames.'
+'-fix som'"
+P3_58683704_X_Claim_[95913.33087]_[06.05.2024_18]_[2848 Everett Drive]_[Friendswood]_[TX].evm,
+P3_59008622_ECPrem_[76515.85598]_[21.05.2024_12]_[330 Morton Rd]_[Rhinebeck]_[NY].evm,
+P3_59033386_X_Claim_[34273.28743]_[22.05.2024_09]_[3200 W Rollingwood Dr]_[Janesville]_[WI].evm,
+P3_59245941_X_Claim_[34273.28743]_[31.05.2024_04]_[14512 Valley View Dr]_[Mystic]_[IA].evm,
+P3_59303515_C_ECPrem_[89348.213026]_[03.06.2024_06]_[2808 Cross Point Cir]_[Matthews]_[NC].evm,
+JP3_511_X_Claim_[34273.28742]_[22.05.2024_06]_[20 Maudie St]_[Greenville]_[SC].evm,'fix material editors wall error'
+JTP3DPen_00000000_IA_[43493.471529]_[22.12.2022_15]_[2612 Nandina Ct]_[Heath]_[TX].evm,'use 6 height & slanted...see SS'
+P2_57861341_ECPrem_[69423.69423]_[22.03.2024_05]_[103 Lexington Drive]_[Annville]_[PA].evm,"'xactware'
+'fix hidden, not xactware.'"
