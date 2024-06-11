@@ -56,46 +56,56 @@ for root, dirs, files in os.walk(os.path.abspath(path)):
                            "from TW by",
                            "Shipped by awshrcacher",
                            "History_New"]
-                #n = 0
-                #t = 0
+
+                #streaming file line
                 for x in notes:
-                    history = str(x)
-                    #n += 1       
-                     
-                    #techqcnotes = techqcnotes.replace("['","")
-                    #techqcnotes = techqcnotes.replace("']","")
+                    line = str(x)
+
+                    #opened by
+                    if "Opened by" in line:
+                        split = line.split()
+                        noteby = split[2]
                 
-                    if any (x in history for x in exclude):
-                        history = ""
-                    elif (samecheck == history):
-                        history = ""
-                        #print("same")
+                    #if in exclude list
+                    if any (x in line for x in exclude):
+                        line = ""
+
+                    #if same notes as previous
+                    elif (samecheck == line):
+                        line = ""
                     
                     else:
+                        #1st notes
                         if samecheck == "":
-                            techqcnotes += str(history)
-                            #t = n
-                            #print("same t "+str(t))
+                            techqcnotes += noteby + ":\n" + str(line)
                             
-                        else:         
+                        #additional notes    
+                        else:  
+                            #if same notes    
                             if str(x) in techqcnotes:    
                                 print("...")
-                                #print("n " +str(n))
-                                #print("t " +str(t))    
-                            else:                                                                 
-                                techqcnotes += "\n" + str(history)
-                                #t = n
-                                #print(x)
-                        samecheck = history
+
+                            # elif noteby in techqcnotes:
+                            #     print("shit")
+                            
+                            #not same notes
+                            else:      
+                                if samenoteby == noteby:
+                                    techqcnotes += "\n" + str(line) 
+                                else:                                                  
+                                    techqcnotes += "\n" + noteby + ":\n" + str(line) + "\n"
+
+                        samecheck = line
+                        samenoteby = noteby
                                      
-                    #history += str(techqcnotes) + "\n"  
-                    #stringnotes = str(notes)
+
                 techqcnotes = techqcnotes.replace("[","")
                 techqcnotes = techqcnotes.replace("]","")
+                techqcnotes = techqcnotes.replace("'","")
                 print(techqcnotes)
                 fname.append(evm)
                 fnotes.append(techqcnotes)
-                history = ""
+                line = ""
                 techqcnotes = ""
 
      
