@@ -21,13 +21,17 @@ time.sleep(3)
 path = os.getcwd()
 # print(path)
 fname = []
-fnotes = []
+notes1 = []
+notes2 = []
 techqcnotes = ""
 
 for root, dirs, files in os.walk(os.path.abspath(path)):
     for file in files:
         if file.endswith(".evm"):
             samecheck = ""
+            notecount = 0
+            note1 = ""
+            note2 = ""
             evm = (os.path.join('', file))
             print(evm)
             evmpath = os.path.join(root, file)
@@ -61,57 +65,77 @@ for root, dirs, files in os.walk(os.path.abspath(path)):
                 for x in notes:
                     line = str(x)
 
+                    line = line.replace("['","")
+                    line = line.replace("']","")
+                    line = line.replace("[","")
+                    line = line.replace("]","")
+
                     #opened by
                     if "Opened by" in line:
                         split = line.split()
                         noteby = split[2]
-                
+
                     #if in exclude list
                     if any (x in line for x in exclude):
                         line = ""
+
+                    elif line == "":
+                        line = ""                        
 
                     #if same notes as previous
                     elif (samecheck == line):
                         line = ""
                     
                     else:
-                        #1st notes
+                        #1st note
                         if samecheck == "":
-                            techqcnotes += noteby + ":\n" + line
+                            notecount = 1   
+                            # techqcnotes += noteby + ":\n" + line + "\n"
+                            note1 += noteby + ":\n" + line + "\n"
                             
                         #additional notes    
                         else:  
-                            #if same notes    
-                            if str(x) in techqcnotes:    
+                            #if same note    
+                            if line in note1 or line in note2:    
                                 print("...")
 
                             # elif noteby in techqcnotes:
                             #     print("shit")
                             
-                            #not same notes
+                            #not same note
                             else:      
                                 if samenoteby == noteby:
-                                    techqcnotes += "\n" + line
-                                else:                                                  
-                                    techqcnotes += "\n" + noteby + ":\n" + line
+                                    # techqcnotes += line + "\n"
+                                    if notecount == 1:
+                                        note1 += line + "\n"
+                                    elif notecount == 2:
+                                        note2 += line + "\n"
+                                else:     
+                                    notecount += 1                                             
+                                    # techqcnotes += noteby + ":\n" + line + "\n"
+                                    if notecount == 1:
+                                        note1 += noteby + ":\n" + line + "\n"
+                                    elif notecount == 2:
+                                        note2 += noteby + ":\n" + line + "\n"
 
                         samecheck = line
                         samenoteby = noteby
                                      
 
-                techqcnotes = techqcnotes.replace("['","")
-                techqcnotes = techqcnotes.replace("']","")
-                techqcnotes = techqcnotes.replace("[","")
-                techqcnotes = techqcnotes.replace("]","")
+                # note1 = note1.replace("['","")
+                # note1 = note1.replace("']","")
+                # note1 = note1.replace("[","")
+                # note1 = note1.replace("]","")
                 print(techqcnotes)
                 fname.append(evm)
-                fnotes.append(techqcnotes)
+                notes1.append(note1)
+                notes2.append(note2)
                 line = ""
                 techqcnotes = ""
 
      
 # dictionary of lists
-dict = {'Filename': fname, 'TechQCNotes': fnotes}
+dict = {'Filename': fname, 'Note 1': notes1, 'Note 2': notes2}
      
 df = pd.DataFrame(dict)
      
