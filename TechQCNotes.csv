@@ -5,7 +5,6 @@ wall 6,8 missed soffits
 wall 5 cutout on under roof
 1214EDTCT46:
 RC file
-
 "
 JP3_511_X_Claim_[34273.28742]_[22.05.2024_06]_[20 Maudie St]_[Greenville]_[SC].evm,"839KLQCT52:
 fix material editors wall error"
@@ -15,8 +14,7 @@ P2_57361081_ECPrem_[37595.37595]_[19.02.2024_11]_[15009 W 123rd Terrace]_[Olathe
 P2_57861341_ECPrem_[69423.69423]_[22.03.2024_05]_[103 Lexington Drive]_[Annville]_[PA].evm,"369CTQCT50:
 xactware
 4145DDQCT49:
-fix hidden, not xactware.
-"
+fix hidden, not xactware."
 P2_58683704_X_Claim_[95913.33087]_[06.05.2024_12]_[2848 Everett Drive]_[Friendswood]_[TX].evm,
 P2_59374646_X_Claim_[34273.28742]_[05.06.2024_03]_[1104 N Cardinal Dr]_[Rogers]_[AR].evm,
 P3_57352585_X_AA3D_[92083.582205916]_[19.02.2024_07]_[14518 County Road 2132 N]_[Tatum]_[TX].evm,
@@ -46,5 +44,4 @@ use 6 height & slanted...see SS"
 P2_57861341_ECPrem_[69423.69423]_[22.03.2024_05]_[103 Lexington Drive]_[Annville]_[PA].evm,"369CTQCT50:
 xactware
 4145DDQCT49:
-fix hidden, not xactware.
-"
+fix hidden, not xactware."

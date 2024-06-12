@@ -11,7 +11,7 @@ import os
 import time
 
 print("***************************************")
-print("TechQCNotes v1.2")
+print("TechQCNotes v1.3")
 print("Extract Tech or QC Notes from EVM files")
 print("***************************************")
 print("Idea: LT \t Code: Pogi")
@@ -77,7 +77,7 @@ for root, dirs, files in os.walk(os.path.abspath(path)):
                     else:
                         #1st notes
                         if samecheck == "":
-                            techqcnotes += noteby + ":\n" + str(line)
+                            techqcnotes += noteby + ":\n" + line
                             
                         #additional notes    
                         else:  
@@ -91,9 +91,9 @@ for root, dirs, files in os.walk(os.path.abspath(path)):
                             #not same notes
                             else:      
                                 if samenoteby == noteby:
-                                    techqcnotes += "\n" + str(line) 
+                                    techqcnotes += "\n" + line
                                 else:                                                  
-                                    techqcnotes += "\n" + noteby + ":\n" + str(line) + "\n"
+                                    techqcnotes += "\n" + noteby + ":\n" + line
 
                         samecheck = line
                         samenoteby = noteby
