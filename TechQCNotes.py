@@ -91,7 +91,7 @@ for root, dirs, files in os.walk(os.path.abspath(path)):
                 notes = comments[0,0]["Notes"][55:,0]    
             
             except:
-                print("Invalid EVM")
+                print("\n" + "Invalid EVM")
                 notes = []
                 
             finally:        
@@ -110,6 +110,8 @@ for root, dirs, files in os.walk(os.path.abspath(path)):
                 #streaming file line
                 tNote = ""
                 cP = ""
+                checkP = ""
+                openedBy = ""
                 prev = ""
                 curr = ""
                 pNote = ""
@@ -118,6 +120,9 @@ for root, dirs, files in os.walk(os.path.abspath(path)):
                 qcTech = ""
                 checkPoint = ""
                 qcNotes = ""
+                popenedBy = ""
+                pqcNotes = ""
+                pcheckP = ""
                 for x in notes:
                     line = str(x)
                     # cp = ""
@@ -131,51 +136,73 @@ for root, dirs, files in os.walk(os.path.abspath(path)):
 
                     #opened by
                     if "Opened by" in line:
+                        # openedBy = line
                         split = line.split()
-                        noteby = split[2]
+                        openedBy = split[2]                        
 
-                        #if in exclude list
-
-                    cNote = line
+                    #exclude list
                     if any (x in line for x in exclude):
-                        cNote += ""
+                        qcNotes = ""
                     else:
-                        if (cNote in pNote):
-                            # print("sameNote")                            
-                            empT = 0
-                            qcNotes = ""
+                        if (popenedBy == openedBy):
+                            qcNotes += "\n" + line
                         else:
-                            # cNote += line
-                            print(cNote)
-                            qcNotes = cNote
-                            # tnValid = True
-                            empT = 1
-                            
-                    checkPoint = ""
+                            qcNotes = line
+
+                    #checkpoint
                     if "Checkpoint" in line:
-                        cP = line
-                        curr = noteby
-                        if (curr != prev and empT == 1):                            
-                            # print(curr + " " + cP)
-                            qcTech = curr
-                            checkPoint = cP
-                        # elif (empT == True):
-                        #     print("")
-                        else:
-                            # print("sameQC")
-                            qcTech = ""
+                        checkP = line + "\n----------------------------------------\n"
+
+
+                    if (openedBy != "" and qcNotes != "" and checkP != ""):
+                        print(openedBy + "\n" + qcNotes + "\n" + checkP)
+
+
+                    
+
+                    popenedBy = openedBy
+                    pqcNotes = qcNotes
+                    pcheckP = checkP
+
+
+
+
+                    # if (cNote in pNote):
+                        #     # print("sameNote")
+                        #     empT = 0
+                        #     qcNotes = ""
+                        # else:
+                        #     # cNote += line
+                        #     print(cNote)
+                        #     qcNotes = cNote
+                        #     # tnValid = True
+                        #     empT = 1
+                            
+                    # checkPoint = ""
+                    # if "Checkpoint" in line:
+                    #     cP = line
+                    #     curr = noteby
+                    #     if (curr != prev and empT == 1):                            
+                    #         # print(curr + " " + cP)
+                    #         qcTech = curr
+                    #         checkPoint = cP
+                    #     # elif (empT == True):
+                    #     #     print("")
+                    #     else:
+                    #         # print("sameQC")
+                    #         qcTech = ""
                                            
                    
 
-                    pNote += cNote
-                    prev = curr
+                    # pNote += cNote
+                    # prev = curr
 
-                    qcNotes = pNote
-                    checkPoint = cP
-                    qcTech = prev
+                    # qcNotes = pNote
+                    # checkPoint = cP
+                    # qcTech = prev
 
-                    if (qcTech != "" and checkPoint != "" and qcNotes != ""):
-                        print(qcTech + "\n" + checkPoint + "\n" + qcNotes + "\n")
+                    # if (qcTech != "" and checkPoint != "" and qcNotes != ""):
+                    #     print(qcTech + "\n" + checkPoint + "\n" + qcNotes + "\n")
 
 
 
