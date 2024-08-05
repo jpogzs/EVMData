@@ -1,8 +1,6 @@
 # TechQCNotes
 # Extract TechQCNotes from EVM files
 
-# Credits:
-# Idea: Lawrence Trinidad
 # Code: James Pogio
 
 import scipy.io as sio
@@ -11,12 +9,12 @@ import os
 import time
 
 print("***************************************")
-print("TechQCNotes v1.4")
+print("TechQCNotes v1.5")
 print("Extract Tech or QC Notes from EVM files")
 print("***************************************")
-print("Idea: LT \t Code: Pogi")
-print()
-# time.sleep(3)
+print("Credits: DDQ SME Team")
+print("***************************************")
+time.sleep(3)
 
 path = os.getcwd()
 
@@ -56,14 +54,6 @@ def dictadd(x):
         dict.update({"Note 9": notes9})
     elif x == 10:
         dict.update({"Note 10": notes10})
-
-# def noteadd(nc, n):
-#     if nc == 1:
-#         global note1
-#         note1 = n
-#     elif nc == 2:
-#         global note2
-#         note2 = n
 
 
 for root, dirs, files in os.walk(os.path.abspath(path)):
@@ -110,17 +100,9 @@ for root, dirs, files in os.walk(os.path.abspath(path)):
                            "History_New"]
 
                 # streaming file line
-                tNote = ""
-                cP = ""
                 checkP = ""
                 openedBy = ""
-                prev = ""
-                curr = ""
                 pNote = ""
-                cNote = ""
-                empT = 0
-                qcTech = ""
-                checkPoint = ""
                 qcNotes = ""
                 popenedBy = ""
                 pqcNotes = ""
@@ -128,30 +110,17 @@ for root, dirs, files in os.walk(os.path.abspath(path)):
                 y = 0
 
                 txtNotes = ""
-                # notecount = 1
                 for x in notes:
                     y += 1
-                    # print(len(notes))
                     line = str(x)
-
-                    # cp = ""
-
-                    # line = line.replace("['","")
-                    # line = line.replace("']","")
-                    # line = line.replace("[","")
-                    # line = line.replace("]","")
 
                     # opened by
                     if "Opened by" in line:
-                        # openedBy = line
                         split = line.split()
                         openedBy = split[2]
                     if (openedBy != popenedBy):
                         qcNotes = ""
-                        # print("PPPPPP" + pNote)
-                        # print(popenedBy + "\n" + pqcNotes + "\n" + pcheckP)
                         if (popenedBy != "" and pqcNotes != "" and pcheckP != "" and pNote != pqcNotes):
-                            # if (pNote != pqcNotes):
                             txtNotes = pqcNotes.replace("['", "")
                             txtNotes = txtNotes.replace("']", "\n")
                             txtNotes = txtNotes.replace("[", "")
@@ -209,15 +178,11 @@ for root, dirs, files in os.walk(os.path.abspath(path)):
                     if "Checkpoint" in line:
                         checkP = line
 
-                    # if (openedBy != "" and qcNotes != "" and checkP != ""):
-                    #     print(openedBy + "\n" + qcNotes + "\n" + checkP)
-
                     popenedBy = openedBy
                     pqcNotes = qcNotes
                     pcheckP = checkP
 
                     if (y == len(notes)):
-                        # print(pqcNotes)
                         pqcNotes = pqcNotes.replace(pNote, "")
                         if (popenedBy != "" and pqcNotes != "" and pcheckP != ""):
 
@@ -264,161 +229,7 @@ for root, dirs, files in os.walk(os.path.abspath(path)):
                             elif notecount == 10:
                                 note10 += txtNotes + "\n"
 
-                    # dictadd(notecount)
-                    # if notecount == 1:
-                    #     note1 += txtNotes + "\n"
-                    # elif notecount == 2:
-                    #     note2 += txtNotes + "\n"
-                    # elif notecount == 3:
-                    #     note3 += txtNotes + "\n"
-                    # elif notecount == 4:
-                    #     note4 += txtNotes + "\n"
-                    # elif notecount == 5:
-                    #     note5 += txtNotes + "\n"
-                    # elif notecount == 6:
-                    #     note6 += txtNotes + "\n"
-                    # elif notecount == 7:
-                    #     note7 += txtNotes + "\n"
-                    # elif notecount == 8:
-                    #     note8 += txtNotes + "\n"
-                    # elif notecount == 9:
-                    #     note9 += txtNotes + "\n"
-                    # elif notecount == 10:
-                    #     note10 += txtNotes + "\n"
 
-                        # print(openedBy + "\n" + "\n" + qcNotes + "\n" + checkP + "\n---------------------------")
-
-                    # if (cNote in pNote):
-                        #     # print("sameNote")
-                        #     empT = 0
-                        #     qcNotes = ""
-                        # else:
-                        #     # cNote += line
-                        #     print(cNote)
-                        #     qcNotes = cNote
-                        #     # tnValid = True
-                        #     empT = 1
-
-                    # checkPoint = ""
-                    # if "Checkpoint" in line:
-                    #     cP = line
-                    #     curr = noteby
-                    #     if (curr != prev and empT == 1):
-                    #         # print(curr + " " + cP)
-                    #         qcTech = curr
-                    #         checkPoint = cP
-                    #     # elif (empT == True):
-                    #     #     print("")
-                    #     else:
-                    #         # print("sameQC")
-                    #         qcTech = ""
-
-                    # pNote += cNote
-                    # prev = curr
-
-                    # qcNotes = pNote
-                    # checkPoint = cP
-                    # qcTech = prev
-
-                    # if (qcTech != "" and checkPoint != "" and qcNotes != ""):
-                    #     print(qcTech + "\n" + checkPoint + "\n" + qcNotes + "\n")
-
-                    # #if in exclude list
-                    # if not (x in line for x in exclude):
-                    #     line = ""
-
-                    # elif line == "":
-                    #     line = ""
-
-                    # #if same notes as previous
-                    # elif (samecheck == line):
-                    #     line = ""
-
-                    # else:
-                    #     #1st note
-                    #     if samecheck == "":
-                    #         notecount = 1
-                    #         dictadd(notecount)
-                    #         techqcnotes += noteby + ":\n" + line + "\n"
-                    #         # print(techqcnotes)
-                    #         # noteadd(notecount, techqcnotes)
-                    #         note1 += noteby + ":\n" + line + "\n"
-                    #         # note1 += line + "\n"
-
-                    #     #additional notes
-                    #     else:
-                    #         #if same note
-                    #         if line in note1 or line in note2 or line in note3 or line in note4 or line in note5 or line in note6 or line in note7 or line in note8 or line in note9 or line in note10:
-                    #             print("...")
-
-                    #         #not same note
-                    #         else:
-                    #             if samenoteby == noteby:
-                    #                 techqcnotes += line + cP + "\n"
-                    #                 # print(techqcnotes)
-                    #                 # # noteadd(notecount, techqcnotes)
-                    #                 if notecount == 1:
-                    #                     note1 += line + "\n"
-                    #                 elif notecount == 2:
-                    #                     note2 += line + "\n"
-                    #                 elif notecount == 3:
-                    #                     note3 += line + "\n"
-                    #                 elif notecount == 4:
-                    #                     note4 += line + "\n"
-                    #                 elif notecount == 5:
-                    #                     note5 += line + "\n"
-                    #                 elif notecount == 6:
-                    #                     note6 += line + "\n"
-                    #                 elif notecount == 7:
-                    #                     note7 += line + "\n"
-                    #                 elif notecount == 8:
-                    #                     note8 += line + "\n"
-                    #                 elif notecount == 9:
-                    #                     note9 += line + "\n"
-                    #                 elif notecount == 10:
-                    #                     note10 += line + "\n"
-                    #             else:
-                    #                 notecount += 1
-                    #                 dictadd(notecount)
-                    #                 techqcnotes += noteby + ":\n" + line + "\n"
-                    #                 # print(techqcnotes)
-                    #                 # noteadd(notecount, techqcnotes)
-
-                    #                 if notecount == 1:
-                    #                     note1 += noteby + ":\n" + line + "\n"
-                    #                     # note1 += line + "\n"
-                    #                 elif notecount == 2:
-                    #                     note2 += noteby + ":\n" + line + "\n"
-                    #                     # note2 += line + "\n"
-                    #                 elif notecount == 3:
-                    #                     note3 += noteby + ":\n" + line + "\n"
-                    #                     # note3 += line + "\n"
-                    #                 elif notecount == 4:
-                    #                     note4 += noteby + ":\n" + line + "\n"
-                    #                     # note4 += line + "\n"
-                    #                 elif notecount == 5:
-                    #                     note5 += noteby + ":\n" + line + "\n"
-                    #                     # note5 += line + "\n"
-                    #                 elif notecount == 6:
-                    #                     note6 += noteby + ":\n" + line + "\n"
-                    #                     # note6 += line + "\n"
-                    #                 elif notecount == 7:
-                    #                     note7 += noteby + ":\n" + line + "\n"
-                    #                     # note7 += line + "\n"
-                    #                 elif notecount == 8:
-                    #                     note8 += noteby + ":\n" + line + "\n"
-                    #                     # note8 += line + "\n"
-                    #                 elif notecount == 9:
-                    #                     note9 += noteby + ":\n" + line + "\n"
-                    #                     # note9 += line + "\n"
-                    #                 elif notecount == 10:
-                    #                     note10 += noteby + ":\n" + line + "\n"
-                    #                     # note10 += line + "\n"
-
-                    #     samecheck = line
-                    #     samenoteby = noteby
-
-                # print(techqcnotes)
                 fname.append(evm)
                 notes1.append(note1)
                 notes2.append(note2)
@@ -430,8 +241,6 @@ for root, dirs, files in os.walk(os.path.abspath(path)):
                 notes8.append(note8)
                 notes9.append(note9)
                 notes10.append(note10)
-                # line = ""
-                # techqcnotes = ""
 
 df = pd.DataFrame(dict)
 
@@ -440,7 +249,7 @@ df.to_csv('TechQCNotes.csv', index=False)
 
 print()
 print("********************************")
-print("Done")
+print("Done!")
 print("Results saved in TechQCNotes.csv")
 print("********************************")
 time.sleep(3)
