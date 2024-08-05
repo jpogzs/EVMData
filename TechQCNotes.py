@@ -34,6 +34,7 @@ notes10 = []
 dict = {'Filename': fname, 'Note 1': notes1}
 techqcnotes = ""
 
+
 def dictadd(x):
     if x == 1:
         dict.update({"Note 1": notes1})
@@ -64,6 +65,7 @@ def dictadd(x):
 #         global note2
 #         note2 = n
 
+
 for root, dirs, files in os.walk(os.path.abspath(path)):
     for file in files:
         if file.endswith(".evm"):
@@ -88,13 +90,13 @@ for root, dirs, files in os.walk(os.path.abspath(path)):
                 my_struct.keys()
                 data = my_struct["ThisStructure"]
                 comments = my_struct["Comments"]
-                notes = comments[0,0]["Notes"][55:,0]    
-            
+                notes = comments[0, 0]["Notes"][55:, 0]
+
             except:
                 print("\n" + "Invalid EVM")
                 notes = []
-                
-            finally:        
+
+            finally:
                 exclude = ["Opened by",
                            "from TW as Checkpoint by",
                            "Saved by",
@@ -107,7 +109,7 @@ for root, dirs, files in os.walk(os.path.abspath(path)):
                            "Shipped by awshrcacher",
                            "History_New"]
 
-                #streaming file line
+                # streaming file line
                 tNote = ""
                 cP = ""
                 checkP = ""
@@ -123,49 +125,168 @@ for root, dirs, files in os.walk(os.path.abspath(path)):
                 popenedBy = ""
                 pqcNotes = ""
                 pcheckP = ""
+                y = 0
+
+                txtNotes = ""
+                # notecount = 1
                 for x in notes:
+                    y += 1
+                    # print(len(notes))
                     line = str(x)
+
                     # cp = ""
 
+                    # line = line.replace("['","")
+                    # line = line.replace("']","")
+                    # line = line.replace("[","")
+                    # line = line.replace("]","")
 
-                    line = line.replace("['","")
-                    line = line.replace("']","")
-                    line = line.replace("[","")
-                    line = line.replace("]","")
-
-
-                    #opened by
+                    # opened by
                     if "Opened by" in line:
                         # openedBy = line
                         split = line.split()
-                        openedBy = split[2]                        
-
-                    #exclude list
-                    if any (x in line for x in exclude):
+                        openedBy = split[2]
+                    if (openedBy != popenedBy):
                         qcNotes = ""
-                    else:
-                        if (popenedBy == openedBy):
-                            qcNotes += "\n" + line
+                        # print("PPPPPP" + pNote)
+                        # print(popenedBy + "\n" + pqcNotes + "\n" + pcheckP)
+                        if (popenedBy != "" and pqcNotes != "" and pcheckP != "" and pNote != pqcNotes):
+                            # if (pNote != pqcNotes):
+                            txtNotes = pqcNotes.replace("['", "")
+                            txtNotes = txtNotes.replace("']", "\n")
+                            txtNotes = txtNotes.replace("[", "")
+                            txtNotes = txtNotes.replace("]", "")
+
+                            txtCP = pcheckP.replace("['", "")
+                            txtCP = txtCP.replace("']", "")
+                            txtCP = txtCP.replace("[", "")
+                            txtCP = txtCP.replace("]", "")
+                            txtCP = txtCP.split("by")
+                            txtCP = txtCP[0]
+                            txtCP = txtCP.split("as")
+                            txtCP = txtCP[0]
+
+                            print(str(notecount + 1) +
+                                  " -------------------------")
+                            print(popenedBy + "\n" + "\n" + txtNotes +
+                                  "\n" + txtCP + "\n---------------------------")
+                            txtNotes = popenedBy + "\n" + "\n" + txtNotes + "\n" + txtCP
+                            pNote = pqcNotes
+                            notecount += 1
+
+                            dictadd(notecount)
+                            if notecount == 1:
+                                note1 += txtNotes + "\n"
+                            elif notecount == 2:
+                                note2 += txtNotes + "\n"
+                            elif notecount == 3:
+                                note3 += txtNotes + "\n"
+                            elif notecount == 4:
+                                note4 += txtNotes + "\n"
+                            elif notecount == 5:
+                                note5 += txtNotes + "\n"
+                            elif notecount == 6:
+                                note6 += txtNotes + "\n"
+                            elif notecount == 7:
+                                note7 += txtNotes + "\n"
+                            elif notecount == 8:
+                                note8 += txtNotes + "\n"
+                            elif notecount == 9:
+                                note9 += txtNotes + "\n"
+                            elif notecount == 10:
+                                note10 += txtNotes + "\n"
+
+                    # exclude list
+                    if not any(x in line for x in exclude):
+                        #     qcNotes = ""
+                        # else:
+                        if (line not in pqcNotes):
+                            qcNotes += line
                         else:
                             qcNotes = line
 
-                    #checkpoint
+                    # checkpoint
                     if "Checkpoint" in line:
-                        checkP = line + "\n----------------------------------------\n"
+                        checkP = line
 
-
-                    if (openedBy != "" and qcNotes != "" and checkP != ""):
-                        print(openedBy + "\n" + qcNotes + "\n" + checkP)
-
-
-                    
+                    # if (openedBy != "" and qcNotes != "" and checkP != ""):
+                    #     print(openedBy + "\n" + qcNotes + "\n" + checkP)
 
                     popenedBy = openedBy
                     pqcNotes = qcNotes
                     pcheckP = checkP
 
+                    if (y == len(notes)):
+                        # print(pqcNotes)
+                        pqcNotes = pqcNotes.replace(pNote, "")
+                        if (popenedBy != "" and pqcNotes != "" and pcheckP != ""):
 
+                            txtNotes = pqcNotes.replace("['", "")
+                            txtNotes = txtNotes.replace("']", "\n")
+                            txtNotes = txtNotes.replace("[", "")
+                            txtNotes = txtNotes.replace("]", "")
 
+                            txtCP = pcheckP.replace("['", "")
+                            txtCP = txtCP.replace("']", "")
+                            txtCP = txtCP.replace("[", "")
+                            txtCP = txtCP.replace("]", "")
+                            txtCP = txtCP.split("by")
+                            txtCP = txtCP[0]
+                            txtCP = txtCP.split("as")
+                            txtCP = txtCP[0]
+
+                            notecount += 1
+                            print(str(notecount + 1) +
+                                  " -------------------------")
+                            print(openedBy + "\n" + "\n" + txtNotes +
+                                  "\n" + txtCP + "\n---------------------------")
+                            txtNotes = openedBy + "\n" + "\n" + txtNotes + "\n" + txtCP
+
+                            dictadd(notecount)
+                            if notecount == 1:
+                                note1 += txtNotes + "\n"
+                            elif notecount == 2:
+                                note2 += txtNotes + "\n"
+                            elif notecount == 3:
+                                note3 += txtNotes + "\n"
+                            elif notecount == 4:
+                                note4 += txtNotes + "\n"
+                            elif notecount == 5:
+                                note5 += txtNotes + "\n"
+                            elif notecount == 6:
+                                note6 += txtNotes + "\n"
+                            elif notecount == 7:
+                                note7 += txtNotes + "\n"
+                            elif notecount == 8:
+                                note8 += txtNotes + "\n"
+                            elif notecount == 9:
+                                note9 += txtNotes + "\n"
+                            elif notecount == 10:
+                                note10 += txtNotes + "\n"
+
+                    # dictadd(notecount)
+                    # if notecount == 1:
+                    #     note1 += txtNotes + "\n"
+                    # elif notecount == 2:
+                    #     note2 += txtNotes + "\n"
+                    # elif notecount == 3:
+                    #     note3 += txtNotes + "\n"
+                    # elif notecount == 4:
+                    #     note4 += txtNotes + "\n"
+                    # elif notecount == 5:
+                    #     note5 += txtNotes + "\n"
+                    # elif notecount == 6:
+                    #     note6 += txtNotes + "\n"
+                    # elif notecount == 7:
+                    #     note7 += txtNotes + "\n"
+                    # elif notecount == 8:
+                    #     note8 += txtNotes + "\n"
+                    # elif notecount == 9:
+                    #     note9 += txtNotes + "\n"
+                    # elif notecount == 10:
+                    #     note10 += txtNotes + "\n"
+
+                        # print(openedBy + "\n" + "\n" + qcNotes + "\n" + checkP + "\n---------------------------")
 
                     # if (cNote in pNote):
                         #     # print("sameNote")
@@ -177,12 +298,12 @@ for root, dirs, files in os.walk(os.path.abspath(path)):
                         #     qcNotes = cNote
                         #     # tnValid = True
                         #     empT = 1
-                            
+
                     # checkPoint = ""
                     # if "Checkpoint" in line:
                     #     cP = line
                     #     curr = noteby
-                    #     if (curr != prev and empT == 1):                            
+                    #     if (curr != prev and empT == 1):
                     #         # print(curr + " " + cP)
                     #         qcTech = curr
                     #         checkPoint = cP
@@ -191,8 +312,6 @@ for root, dirs, files in os.walk(os.path.abspath(path)):
                     #     else:
                     #         # print("sameQC")
                     #         qcTech = ""
-                                           
-                   
 
                     # pNote += cNote
                     # prev = curr
@@ -204,60 +323,40 @@ for root, dirs, files in os.walk(os.path.abspath(path)):
                     # if (qcTech != "" and checkPoint != "" and qcNotes != ""):
                     #     print(qcTech + "\n" + checkPoint + "\n" + qcNotes + "\n")
 
-
-
-
-
-                
-
-
-
-
-                    
-
-
-
-                    
-
-
-
-
-
-
                     # #if in exclude list
                     # if not (x in line for x in exclude):
                     #     line = ""
 
                     # elif line == "":
-                    #     line = ""                        
+                    #     line = ""
 
                     # #if same notes as previous
                     # elif (samecheck == line):
                     #     line = ""
-                    
+
                     # else:
                     #     #1st note
                     #     if samecheck == "":
-                    #         notecount = 1   
+                    #         notecount = 1
                     #         dictadd(notecount)
                     #         techqcnotes += noteby + ":\n" + line + "\n"
                     #         # print(techqcnotes)
                     #         # noteadd(notecount, techqcnotes)
                     #         note1 += noteby + ":\n" + line + "\n"
                     #         # note1 += line + "\n"
-                            
-                    #     #additional notes    
-                    #     else:  
-                    #         #if same note    
-                    #         if line in note1 or line in note2 or line in note3 or line in note4 or line in note5 or line in note6 or line in note7 or line in note8 or line in note9 or line in note10:    
+
+                    #     #additional notes
+                    #     else:
+                    #         #if same note
+                    #         if line in note1 or line in note2 or line in note3 or line in note4 or line in note5 or line in note6 or line in note7 or line in note8 or line in note9 or line in note10:
                     #             print("...")
-                            
+
                     #         #not same note
-                    #         else:      
+                    #         else:
                     #             if samenoteby == noteby:
                     #                 techqcnotes += line + cP + "\n"
                     #                 # print(techqcnotes)
-                    #                 # # noteadd(notecount, techqcnotes) 
+                    #                 # # noteadd(notecount, techqcnotes)
                     #                 if notecount == 1:
                     #                     note1 += line + "\n"
                     #                 elif notecount == 2:
@@ -278,13 +377,13 @@ for root, dirs, files in os.walk(os.path.abspath(path)):
                     #                     note9 += line + "\n"
                     #                 elif notecount == 10:
                     #                     note10 += line + "\n"
-                    #             else:     
-                    #                 notecount += 1                                    
-                    #                 dictadd(notecount)    
+                    #             else:
+                    #                 notecount += 1
+                    #                 dictadd(notecount)
                     #                 techqcnotes += noteby + ":\n" + line + "\n"
                     #                 # print(techqcnotes)
-                    #                 # noteadd(notecount, techqcnotes)                                       
-                                    
+                    #                 # noteadd(notecount, techqcnotes)
+
                     #                 if notecount == 1:
                     #                     note1 += noteby + ":\n" + line + "\n"
                     #                     # note1 += line + "\n"
@@ -318,24 +417,24 @@ for root, dirs, files in os.walk(os.path.abspath(path)):
 
                     #     samecheck = line
                     #     samenoteby = noteby
-                                     
+
                 # print(techqcnotes)
-                # fname.append(evm)                
-                # notes1.append(note1)
-                # notes2.append(note2)
-                # notes3.append(note3)
-                # notes4.append(note4)
-                # notes5.append(note5)
-                # notes6.append(note6)
-                # notes7.append(note7)
-                # notes8.append(note8)
-                # notes9.append(note9)
-                # notes10.append(note10)
+                fname.append(evm)
+                notes1.append(note1)
+                notes2.append(note2)
+                notes3.append(note3)
+                notes4.append(note4)
+                notes5.append(note5)
+                notes6.append(note6)
+                notes7.append(note7)
+                notes8.append(note8)
+                notes9.append(note9)
+                notes10.append(note10)
                 # line = ""
                 # techqcnotes = ""
-     
+
 df = pd.DataFrame(dict)
-     
+
 # saving the dataframe
 df.to_csv('TechQCNotes.csv', index=False)
 
